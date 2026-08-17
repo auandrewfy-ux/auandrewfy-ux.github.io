@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrew Friday | Geospatial Data Scientist & AI Specialist</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #0a1128;
+      --bg-secondary: #101f42;
+      --bg-card: rgba(26, 44, 86, 0.55);
+      --bg-card-hover: rgba(35, 60, 115, 0.75);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(72, 202, 228, 0.35);
+      --accent-cyan: #00f0ff;
+      --accent-blue: #0077b6;
+      --accent-glow: rgba(0, 240, 255, 0.15);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(0, 119, 182, 0.06) 0%, transparent 45%);
+      background-attachment: fixed;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 17, 40, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 75px;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--accent-cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent-cyan);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Section Base */
+    section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-title-wrap {
+      margin-bottom: 3.5rem;
+      text-align: center;
+    }
+
+    .section-badge {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid var(--border-accent);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-text h1 span {
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1.15rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.2px;
+    }
+
+    .hero-description {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: #050b1a;
+      border: none;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 240, 255, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      width: 290px;
+      height: 290px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.2) 0%, rgba(0, 119, 182, 0.05) 70%, transparent 100%);
+      animation: pulse 4s infinite alternate;
+    }
+
+    .avatar-frame {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(135deg, var(--accent-cyan), transparent 60%, var(--accent-blue));
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .avatar-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: var(--bg-secondary);
+      display: block;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.6; }
+      100% { transform: scale(1.08); opacity: 1; }
+    }
+
+    /* About Section */
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-lead {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .about-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .about-meta-item h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+      margin-bottom: 0.35rem;
+    }
+
+    .about-meta-item p {
+      font-size: 1rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* Timeline / Work Experience */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-cyan), rgba(255, 255, 255, 0.05));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 55px;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 13px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      border: 3px solid var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .timeline-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: var(--transition);
+    }
+
+    .timeline-content:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-role {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .timeline-dates {
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      background: rgba(0, 240, 255, 0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .timeline-company {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .timeline-bullets {
+      list-style-type: none;
+    }
+
+    .timeline-bullets li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-bullets li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+    }
+
+    /* Education & Certifications Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-top {
+      margin-bottom: 1rem;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(0, 240, 255, 0.08);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    .card-footer {
+      margin-top: 1.25rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Skills Grid */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .skill-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.75rem;
+    }
+
+    .skill-group-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--accent-cyan);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .skill-tag:hover {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    /* Languages & Interests */
+    .lang-interests-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .lang-card, .interest-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 2rem;
+    }
+
+    .lang-item {
+      margin-bottom: 1.25rem;
+    }
+
+    .lang-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .lang-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .lang-bar-bg {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .lang-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      border-radius: 999px;
+    }
+
+    /* Contact Section */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(16, 31, 66, 0.9), rgba(26, 44, 86, 0.7));
+      border: 1px solid var(--border-accent);
+      border-radius: 20px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-subtitle {
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-items {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1.25rem;
+      border-radius: 999px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .contact-pill:hover {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2.5rem 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+
+    /* Scroll Animation */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 868px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+      }
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+      .hero-description {
+        margin: 0 auto 2rem;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-image-wrap {
+        order: -1;
+      }
+      .avatar-frame, .avatar-glow {
+        width: 200px;
+        height: 200px;
+      }
+      .lang-interests-grid {
+        grid-template-columns: 1fr;
+      }
+      .timeline::before {
+        left: 10px;
+      }
+      .timeline-dot {
+        left: 3px;
+      }
+      .timeline-item {
+        padding-left: 35px;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="container nav-container">
+      <a href="#hero" class="logo">ANDREW<span>.F</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#languages">Languages</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text fade-in-section">
+        <span class="section-badge">Portfolio & Profile</span>
+        <h1>Hi, I'm <span>Andrew Friday</span></h1>
+        <p class="hero-tagline">Aspiring Geospatial Data Scientist | Multilingual Specialist | AI Data & Annotation</p>
+        <p class="hero-description">
+          Bridging the gap between geographical science, programming languages, and AI-driven systems with hands-on experience in early warning networks, spatial analysis, and machine learning quality assurance.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get In Touch</a>
+          <a href="#experience" class="btn btn-outline">Explore Experience</a>
+        </div>
+      </div>
+      <div class="hero-image-wrap fade-in-section">
+        <div class="avatar-glow"></div>
+        <div class="avatar-frame">
+          <!-- User Profile Picture Placeholder -->
+          <img id="profileImg" src="profile.jpg" alt="Andrew Friday" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about">
+    <div class="container fade-in-section">
+      <div class="section-title-wrap">
+        <span class="section-badge">Profile Overview</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="about-card">
+        <p class="about-lead">
+          I am a versatile, multilingual professional with comprehensive expertise in geospatial analysis, AI data annotation, translation, and early warning systems. With an educational foundation spanning Meteorology and Disaster Risk Management, I bridge physical geographical insights with modern data science technologies.
+        </p>
+        <p class="about-lead" style="margin-bottom: 0; color: var(--text-muted); font-size: 1rem;">
+          My career encompasses conducting high-precision visual evaluation and data annotation for tier-one AI models, producing multilingual strategic briefs for senior leadership at the ECOWAS Commission, and supporting disaster forecasting workflows at NEMA. I am committed to rigorous data quality, spatial analytics, and cross-functional technical execution.
+        </p>
+        <div class="about-meta-grid">
+          <div class="about-meta-item">
+            <h4>Location</h4>
+            <p>Abuja, Nigeria</p>
+          </div>
+          <div class="about-meta-item">
+            <h4>Primary Focus</h4>
+            <p>Geospatial Data Science & AI</p>
+          </div>
+          <div class="about-meta-item">
+            <h4>Languages</h4>
+            <p>English, French, Hausa</p>
+          </div>
+          <div class="about-meta-item">
+            <h4>Collaboration</h4>
+            <p>Remote & On-Site</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Section -->
+  <section id="experience">
+    <div class="container fade-in-section">
+      <div class="section-title-wrap">
+        <span class="section-badge">Career Path</span>
+        <h2 class="section-title">Work Experience</h2>
+      </div>
+      <div class="timeline">
+        
+        <!-- Role 1: Turing -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 class="timeline-role">Video Annotator</h3>
+              <span class="timeline-dates">May 2026 – Jul 2026</span>
+            </div>
+            <div class="timeline-company">Turing · Remote (USA)</div>
+            <ul class="timeline-bullets">
+              <li>Evaluated AI-generated and real-world visual content using structured rating frameworks and detailed guidelines.</li>
+              <li>Assessed media for quality, realism, composition, motion, lighting, and adherence to rigorous standards.</li>
+              <li>Provided well-structured written justifications across high-volume tasks, identifying quality gaps to support cutting-edge AI model improvements.</li>
+              <li>Conducted comprehensive data quality audits to correct inconsistencies and maintain dataset integrity.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 2: ECOWAS Contract -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 class="timeline-role">Administrative Support / Support Staff (Contract)</h3>
+              <span class="timeline-dates">Jan 2025 – Nov 2025</span>
+            </div>
+            <div class="timeline-company">ECOWAS Commission · Abuja, Nigeria</div>
+            <ul class="timeline-bullets">
+              <li>Coordinated official communications and event logistics for the Early Warning Directorate.</li>
+              <li>Drafted and formatted reports, memos, and presentations for workshops and policy briefs.</li>
+              <li>Managed document versioning and ensured editorial consistency across multilingual outputs.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 3: ECOWAS Intern -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 class="timeline-role">Intern / Support Staff</h3>
+              <span class="timeline-dates">Feb 2024 – Dec 2024</span>
+            </div>
+            <div class="timeline-company">ECOWAS Commission – Directorate of Early Warning · Abuja, Nigeria</div>
+            <ul class="timeline-bullets">
+              <li>Curated and translated daily news highlights across English, French, and Portuguese for senior executive leadership.</li>
+              <li>Supported real-time data monitoring in the Situation Room, contributing to early warning alerts and strategic security briefs.</li>
+              <li>Assisted the GIS unit with spatial data integration and map generation for regional risk communication.</li>
+              <li>Documented workshops on Disaster Risk Reduction (DRR) and Joint Analysis and Response Planning (JARP).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 4: NEMA -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 class="timeline-role">Intern – Planning, Research & Forecasting</h3>
+              <span class="timeline-dates">Jan 2022 – Jan 2023</span>
+            </div>
+            <div class="timeline-company">National Emergency Management Agency (NEMA) · Abuja, Nigeria</div>
+            <ul class="timeline-bullets">
+              <li>Supported disaster risk reduction initiatives and early warning system modeling.</li>
+              <li>Assisted in research, forecasting, and documentation of emergency management protocols.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 5: Freelance Author -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 class="timeline-role">Freelance Author</h3>
+              <span class="timeline-dates">2017 – 2020</span>
+            </div>
+            <div class="timeline-company">Global Online Novel Platforms · Remote</div>
+            <ul class="timeline-bullets">
+              <li>Wrote long-form fictional content for global audiences across digital publishing platforms.</li>
+              <li>Collaborated with international editors to meet stylistic guidelines and proofreading quality metrics.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <div class="container fade-in-section">
+      <div class="section-title-wrap">
+        <span class="section-badge">Academic Background</span>
+        <h2 class="section-title">Education</h2>
+      </div>
+      <div class="cards-grid">
+        
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">Fellowship</span>
+            <h3 class="card-title">Talent Nation (Learn2Earn)</h3>
+            <p class="card-subtitle">Tech Fellowship | Nov 2025 – Present</p>
+            <p class="card-desc">Specialized training in Python, Bash, Jupyter Notebook, Linux/Ubuntu, Git, Go, HTML, and GeoPandas for geospatial data science workflows.</p>
+          </div>
+          <div class="card-footer">
+            <span>Location: Lagos (Remote)</span>
+            <span>Active</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">Postgraduate</span>
+            <h3 class="card-title">M.Sc. in Disaster Risk Management</h3>
+            <p class="card-subtitle">Ahmadu Bello University DLC | 2024 – 2026</p>
+            <p class="card-desc">Specialized in GIS applications for risk management, geospatial environmental monitoring, and hazard vulnerability mapping.</p>
+          </div>
+          <div class="card-footer">
+            <span>Zaria, Nigeria</span>
+            <span>M.Sc. Degree</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">Undergraduate</span>
+            <h3 class="card-title">B.Tech in Geography (Meteorology)</h3>
+            <p class="card-subtitle">Federal University of Technology, Minna | 2018 – 2024</p>
+            <p class="card-desc">Focused on meteorological analysis, climate systems, environmental monitoring, cartography, and weather-based risk forecasting.</p>
+          </div>
+          <div class="card-footer">
+            <span>Minna, Nigeria</span>
+            <span>B.Tech Degree</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container fade-in-section">
+      <div class="section-title-wrap">
+        <span class="section-badge">Capabilities</span>
+        <h2 class="section-title">Skills & Competencies</h2>
+      </div>
+      <div class="skills-layout">
+        
+        <div class="skill-group">
+          <h3 class="skill-group-title">🌐 Geospatial & Mapping</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">ArcGIS Pro</span>
+            <span class="skill-tag">QGIS</span>
+            <span class="skill-tag">GeoPandas</span>
+            <span class="skill-tag">Spatial Analysis</span>
+            <span class="skill-tag">Coordinate Systems</span>
+            <span class="skill-tag">Cartography</span>
+            <span class="skill-tag">Hazard Mapping</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group-title">💻 Programming & Data</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Jupyter Notebook</span>
+            <span class="skill-tag">Bash / Linux (Ubuntu)</span>
+            <span class="skill-tag">Git & Version Control</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Golang</span>
+            <span class="skill-tag">HTML & Web Basics</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group-title">🤖 AI & Data Quality</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Video Annotation</span>
+            <span class="skill-tag">Visual Content Evaluation</span>
+            <span class="skill-tag">ML Data Preparation</span>
+            <span class="skill-tag">Data Quality Auditing</span>
+            <span class="skill-tag">Annotation Guidelines</span>
+            <span class="skill-tag">Model Feedback</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group-title">🛡️ Risk & Administration</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Disaster Risk Reduction (DRR)</span>
+            <span class="skill-tag">Early Warning Systems</span>
+            <span class="skill-tag">Multilingual Reporting</span>
+            <span class="skill-tag">Technical Documentation</span>
+            <span class="skill-tag">Microsoft Office Suite</span>
+            <span class="skill-tag">SharePoint</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications">
+    <div class="container fade-in-section">
+      <div class="section-title-wrap">
+        <span class="section-badge">Credentials</span>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+      <div class="cards-grid">
+        
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">ESRI MOOC</span>
+            <h3 class="card-title">Going Places with Spatial Analysis</h3>
+            <p class="card-subtitle">ESRI (Environmental Systems Research Institute)</p>
+            <p class="card-desc">6-week specialized MOOC focused on geographic analysis, spatial problem-solving, and map modeling.</p>
+          </div>
+          <div class="card-footer">
+            <span>Completed</span>
+            <span>March 2025</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">ESRI Course</span>
+            <h3 class="card-title">Map Layer Basics</h3>
+            <p class="card-subtitle">ESRI Training</p>
+            <p class="card-desc">Comprehensive web course on configuring, visualizing, and managing spatial data layer properties.</p>
+          </div>
+          <div class="card-footer">
+            <span>Completed</span>
+            <span>April 2026</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">ESRI Course</span>
+            <h3 class="card-title">Introduction to Coordinate Systems</h3>
+            <p class="card-subtitle">ESRI Training</p>
+            <p class="card-desc">Foundational training on projections, geographic coordinate systems, datum transformations, and distortions.</p>
+          </div>
+          <div class="card-footer">
+            <span>Completed</span>
+            <span>April 2026</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">ESRI Course</span>
+            <h3 class="card-title">Querying Data Using ArcGIS Pro</h3>
+            <p class="card-subtitle">ESRI Training</p>
+            <p class="card-desc">Advanced spatial and attribute querying techniques, SQL filtering, and conditional feature selection in ArcGIS Pro.</p>
+          </div>
+          <div class="card-footer">
+            <span>Completed</span>
+            <span>April 2026</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">ESRI Course</span>
+            <h3 class="card-title">Editing Basics in ArcGIS Pro</h3>
+            <p class="card-subtitle">ESRI Training</p>
+            <p class="card-desc">Techniques for creating, modifying, and managing topological vector features and geospatial attributes.</p>
+          </div>
+          <div class="card-footer">
+            <span>Completed</span>
+            <span>April 2026</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">ESRI Course</span>
+            <h3 class="card-title">GIS for Climate Action</h3>
+            <p class="card-subtitle">ESRI Training</p>
+            <p class="card-desc">Leveraging geospatial technology and environmental datasets for climate resilience and mitigation analysis.</p>
+          </div>
+          <div class="card-footer">
+            <span>Professional Certification</span>
+            <span>ESRI</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">Institutional Workshop</span>
+            <h3 class="card-title">ECOWAS Governance Analyst</h3>
+            <p class="card-subtitle">ECOWAS Commission</p>
+            <p class="card-desc">Participation and analytical contribution to regional governance and security working groups.</p>
+          </div>
+          <div class="card-footer">
+            <span>Verified Participation</span>
+            <span>ECOWAS</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">Strategic Planning</span>
+            <h3 class="card-title">Joint Analysis & Response Planning (JARP)</h3>
+            <p class="card-subtitle">ECOWAS Commission</p>
+            <p class="card-desc">Collaborative emergency response, early warning analysis, and multi-sectoral planning workshop.</p>
+          </div>
+          <div class="card-footer">
+            <span>Early Warning Directorate</span>
+            <span>ECOWAS</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <span class="card-badge">Professional Literacy</span>
+            <h3 class="card-title">Certificate of Basic Financial Literacy</h3>
+            <p class="card-subtitle">GIZ (Deutsche Gesellschaft für Internationale Zusammenarbeit)</p>
+            <p class="card-desc">Structured program on project financial management, budget tracking, and economic planning.</p>
+          </div>
+          <div class="card-footer">
+            <span>Development Agency</span>
+            <span>GIZ</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Languages & Interests Section -->
+  <section id="languages">
+    <div class="container fade-in-section">
+      <div class="section-title-wrap">
+        <span class="section-badge">Linguistics & Focus</span>
+        <h2 class="section-title">Languages & Interests</h2>
+      </div>
+      <div class="lang-interests-grid">
+        
+        <div class="lang-card">
+          <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; color: var(--text-main);">Languages</h3>
+          
+          <div class="lang-item">
+            <div class="lang-info">
+              <span>English</span>
+              <span style="color: var(--accent-cyan);">Fluent / Professional</span>
+            </div>
+            <div class="lang-bar-bg">
+              <div class="lang-bar-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="lang-item">
+            <div class="lang-info">
+              <span>French</span>
+              <span style="color: var(--text-muted);">Working / Beginner</span>
+            </div>
+            <div class="lang-bar-bg">
+              <div class="lang-bar-fill" style="width: 45%;"></div>
+            </div>
+          </div>
+
+          <div class="lang-item">
+            <div class="lang-info">
+              <span>Hausa</span>
+              <span style="color: var(--accent-cyan);">Fluent</span>
+            </div>
+            <div class="lang-bar-bg">
+              <div class="lang-bar-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="interest-card">
+          <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; color: var(--text-main);">Key Interests</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Cartography</span>
+            <span class="skill-tag">Climate Change & Weather</span>
+            <span class="skill-tag">Spatial Analysis</span>
+            <span class="skill-tag">GIS Software Architecture</span>
+            <span class="skill-tag">Disaster Risk Management</span>
+            <span class="skill-tag">International Development</span>
+            <span class="skill-tag">AI & Machine Learning Innovation</span>
+            <span class="skill-tag">Data Quality Assurance</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container fade-in-section">
+      <div class="contact-card">
+        <span class="section-badge">Get In Touch</span>
+        <h2 class="contact-title">Let's Connect & Collaborate</h2>
+        <p class="contact-subtitle">
+          Interested in geospatial data analysis, AI dataset quality evaluation, or disaster risk early warning systems? Reach out directly.
+        </p>
+        <div class="contact-items">
+          <a href="mailto:au.andrew.fy@gmail.com" class="contact-pill">
+            <span>✉️</span> au.andrew.fy@gmail.com
+          </a>
+          <a href="tel:+2348068630166" class="contact-pill">
+            <span>📞</span> +234 806 863 0166
+          </a>
+          <span class="contact-pill">
+            <span>📍</span> Abuja, Nigeria
+          </span>
+        </div>
+        <a href="mailto:au.andrew.fy@gmail.com" class="btn btn-primary">Send an Email</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Andrew Friday. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      root: null,
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    // Active navigation highlighter on scroll
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === `#${current}`) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
